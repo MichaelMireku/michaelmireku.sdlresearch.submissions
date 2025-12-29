@@ -1,0 +1,27 @@
+name: Track Submission
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Parse and Submit
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          REPOSITORY: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          COMMIT_HASH: ${{ github.sha }}
+        run: node .github/scripts/track-submission.js
