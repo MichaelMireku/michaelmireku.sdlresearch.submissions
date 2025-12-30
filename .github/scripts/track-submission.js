@@ -12,7 +12,7 @@
  * - COMMIT_HASH: Git commit SHA
  */
 
-const VALID_TYPES = ['assignment', 'project', 'portfolio', 'notebook', 'code', 'research', 'publication'];
+const VALID_TYPES = ['assignment', 'project', 'portfolio', 'notebook', 'code', 'research', 'publication', 'notes'];
 const VALID_STATUSES = ['planned', 'in-progress', 'completed', 'published'];
 
 /**
